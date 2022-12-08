@@ -172,12 +172,12 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
+						<li class="active"><a href="{% url 'main_page' %}">Home</a></li>
 						<li><a href="#">Hot Deals</a></li>
-						<li><a href="/p">All Products</a></li>
+						<li><a href="{% url 'product_list_page' %}">All Products</a></li>
 						{% get_product_categories as product_categories %}
 						{% for product_category in product_categories %}
-								<li><a href="#">{{product_category}}</a></li>
+								<li><a href="{{product_category.get_absolute_url}}">{{product_category}}</a></li>
 						{% endfor %}
 					</ul>
 					<!-- /NAV -->
@@ -253,8 +253,9 @@
 								<h3 class="footer-title">Categories</h3>
 								<ul class="footer-links">
 									<li><a href="#">Hot deals</a></li>
+									<li><a href="{% url 'product_list_page' %}">All Products</a></li>
 									{% for product_category in product_categories %}
-										<li><a href="#">{{product_category}}</a></li>
+										<li><a href="{{product_category.get_absolute_url}}">{{product_category}}</a></li>
 									{% endfor %}
 								</ul>
 							</div>

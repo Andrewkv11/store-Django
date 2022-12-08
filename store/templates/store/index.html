@@ -8,45 +8,19 @@
 				<!-- row -->
 				<div class="row">
 					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
+					{% for category in categories %}
+					<div class="col-md-3 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
-								<img src="{% static 'store/images/shop01.png' %}" alt="">
+								<img src="{{category.main_image.url}}" alt="">
 							</div>
 							<div class="shop-body">
-								<h3>Laptop<br>Collection</h3>
-								<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+								<h3>{{category}}<br>Collection</h3>
+								<a href="{{category.get_absolute_url}}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
-					<!-- /shop -->
-
-					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src="{% static 'store/images/shop03.png' %}" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>Accessories<br>Collection</h3>
-								<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /shop -->
-
-					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src="{% static 'store/images/shop02.png' %}" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>Cameras<br>Collection</h3>
-								<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
+					{% endfor %}
 					<!-- /shop -->
 				</div>
 				<!-- /row -->
