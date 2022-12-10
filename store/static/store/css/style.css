@@ -489,6 +489,16 @@ textarea.input {
   border-radius: 0px 40px 40px 0px;
 }
 
+ .apply-btn {
+  height: 40px;
+  width: 100px;
+  background: #D10024;
+  color: #FFF;
+  font-weight: 700;
+  border: none;
+  border-radius: 0px 40px 40px 0px;
+}
+
 /*----------------------------*\
 	Cart
 \*----------------------------*/
@@ -1049,6 +1059,28 @@ textarea.input {
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
+
+ .apply-btn {
+  position: relative;
+  border: 2px solid transparent;
+  height: 40px;
+  width: 200px;
+  padding: 0 30px;
+  background-color: #ef233c;
+  color: #FFF;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 40px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+ .apply-btn:hover {
+  background-color: #FFF;
+  color: #D10024;
+  border-color: #D10024;
+  padding: 0px 30px 0px 30px;
+}
+
 
 .product .add-to-cart .add-to-cart-btn>i {
   position: absolute;
@@ -2187,4 +2219,10 @@ textarea.input {
     float: none;
     margin-top: 10px;
   }
+}
+
+.form-error ul {
+    list-style: none;
+    padding: 0;
+    color: #CC0000;
 }

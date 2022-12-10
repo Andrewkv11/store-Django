@@ -1,0 +1,44 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-7">
+						<!-- Billing Details -->
+						<div class="billing-details">
+							{% if request.user.is_authenticated %}
+							<div class="section-title">
+								<h3 class="title">You have successfully logged as {{request.user.username}}</h3>
+							</div>
+							{% else %}
+							<form method="post">
+							{% csrf_token %}
+							<div class="section-title">
+								<h3 class="title">Login</h3>
+							</div>
+                            {% for field in form %}
+                            <div class="form-group">
+                                {{field}}
+							</div>
+                            {% endfor %}
+							<br>
+							<p style="text-indent:17px">Don't have an account? <a href="{% url 'register' %}">Create account</a></p>
+							<br>
+							<br>
+							<button class="apply-btn">Login</button>
+							</form>
+							{% endif %}
+						</div>
+						<!-- /Billing Details -->
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+{% endblock %}

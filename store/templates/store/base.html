@@ -49,8 +49,13 @@
 						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+					{% if request.user.is_authenticated %}
+						<li><a>Hello, {{request.user.username}}</a></li>
+						<li><a href="{% url 'logout' %}"><i class="fa fa-user-o"></i>Log out</a></li>
+					{% else %}
+						<li><a href="{% url 'login' %}"><i class="fa fa-user-o"></i>Log in</a></li>
+						<li><a href="{% url 'register' %}"><i class="fa fa-user-o"></i>Create account</a></li>
+					{% endif %}
 					</ul>
 				</div>
 			</div>
@@ -65,7 +70,7 @@
 						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
-								<a href="#" class="logo">
+								<a href="{% url 'main_page' %}" class="logo">
 									<img src="{% static 'store/images/logo.png' %}" alt="">
 								</a>
 							</div>
@@ -172,12 +177,23 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="{% url 'main_page' %}">Home</a></li>
-						<li><a href="#">Hot Deals</a></li>
-						<li><a href="{% url 'product_list_page' %}">All Products</a></li>
+						{% if cat_selected == None %}
+							<li class="active"><a href="{% url 'main_page' %}">Home</a></li>
+						{% else %}
+							<li><a href="{% url 'main_page' %}">Home</a></li>
+						{% endif %}
+						{% if cat_selected == 0 %}
+							<li class="active"><a href="{% url 'product_list_page' %}">All Products</a></li>
+						{% else %}
+							<li><a href="{% url 'product_list_page' %}">All Products</a></li>
+						{% endif %}
 						{% get_product_categories as product_categories %}
 						{% for product_category in product_categories %}
+						{% if cat_selected == product_category.id %}
+								<li class="active"><a href="{{product_category.get_absolute_url}}">{{product_category}}</a></li>
+						{% else %}
 								<li><a href="{{product_category.get_absolute_url}}">{{product_category}}</a></li>
+						{% endif %}
 						{% endfor %}
 					</ul>
 					<!-- /NAV -->
@@ -187,6 +203,30 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
+		{% if not cat_selected is None %}
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="breadcrumb-tree">
+							<li><a href="{% url 'main_page' %}">Home</a></li>
+							{% if cat_selected == 0 %}
+								<li class="active">All Categories ({{paginator.count}} Results)</li>
+							{% elif cat_selected > 0 %}
+								<li class="active">{{products.0.cat}} ({{paginator.count}} Results)</li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /BREADCRUMB -->
+		{% endif %}
 
         {% block content %}
 
@@ -252,7 +292,6 @@
 							<div class="footer">
 								<h3 class="footer-title">Categories</h3>
 								<ul class="footer-links">
-									<li><a href="#">Hot deals</a></li>
 									<li><a href="{% url 'product_list_page' %}">All Products</a></li>
 									{% for product_category in product_categories %}
 										<li><a href="{{product_category.get_absolute_url}}">{{product_category}}</a></li>

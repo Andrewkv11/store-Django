@@ -17,11 +17,15 @@ class Manufacturer_Admin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
+
+
 class Product_Admin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'cat', 'mnf']
+    list_display = ['id', 'name', 'price', 'discount', 'final_price', 'cat', 'mnf']
     list_display_links = ['id', 'name']
     ordering = ['id']
     prepopulated_fields = {'slug': ('name',)}
+    list_editable = ['price', 'discount']
+    list_filter = ['cat', 'mnf']
 
 
 admin.site.register(Product_Category, Product_Category_Admin)

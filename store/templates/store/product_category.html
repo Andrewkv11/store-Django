@@ -12,7 +12,7 @@
 						<ul class="breadcrumb-tree">
 							<li><a href="{% url 'main_page' %}">Home</a></li>
 							<li><a href="{% url 'product_list_page' %}">All Categories</a></li>
-							<li><a href="{{cat.get_absolute_url}}">{{cat}}</a></li>
+							<li class="active">{{products.0.cat}} ({{products|length}} Results)</li>
 						</ul>
 					</div>
 				</div>
@@ -156,7 +156,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">{{product.cat}}</p>
-										<div style="height: 50px;"><h3 class="product-name"><a href="#">{{product.name}}</a></h3></div>
+										<div style="height: 50px;"><h3 class="product-name"><a href="{{product.get_absolute_url}}">{{product.name}}</a></h3></div>
 										<h4 class="product-price">${{product.price}}<del class="product-old-price">$990.00</del></h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
