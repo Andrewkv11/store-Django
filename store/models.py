@@ -44,7 +44,6 @@ class Product(models.Model):
     cat = models.ForeignKey(Product_Category, on_delete=models.PROTECT, null=True, verbose_name='category')
     mnf = models.ForeignKey(Manufacturer, on_delete=models.PROTECT, null=True, verbose_name='brand')
 
-
     def __str__(self):
         return self.name
 

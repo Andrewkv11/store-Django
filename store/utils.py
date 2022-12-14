@@ -1,5 +1,7 @@
 from django.db.models import Max, Min
+from django.http import HttpResponseRedirect
 
+from cart.cart import Cart
 from .models import Product, Product_Category, Manufacturer
 
 

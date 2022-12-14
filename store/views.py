@@ -1,9 +1,11 @@
 from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 
+from cart.cart import Cart
 from .models import Product_Category, Product
 from .forms import RegisterUserForm, LoginUserForm
 from .utils import DataMixin
@@ -77,6 +79,10 @@ class LoginUser(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('login')
+
+
+def view_cart(request):
+    return render(request, 'store/view_cart.html')
 
 
 def logout_user(request):

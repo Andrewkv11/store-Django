@@ -1,6 +1,7 @@
 {% extends 'store/base.html' %}
 {% load static %}
 {% block content %}
+{% load store_tags %}
 		<!-- BREADCRUMB -->
 		<div id="breadcrumb" class="section">
 			<!-- container -->
@@ -70,6 +71,8 @@
 
 							</div>
 							<br>
+							<form method="post" action="{% url 'cart_add' product.id %}">
+								{% csrf_token %}
 							<div class="add-to-cart">
 								<div class="qty-label">
 									Qty
@@ -79,8 +82,14 @@
 										<span class="qty-down">-</span>
 									</div>
 								</div>
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								<input type="hidden" name = "redirect_url" value="{{request.get_full_path}}">
+								{% if product.id|str in cart.cart %}
+                                        <button class="in-cart-btn" disabled>in cart</button>
+                                {% else %}
+                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                {% endif %}
 							</div>
+							</form>
 
 							<ul class="product-btns">
 								<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>

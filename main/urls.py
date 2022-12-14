@@ -20,6 +20,7 @@ from main import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cart', include('cart.urls')),
     path('', include('store.urls')),
 ]
 

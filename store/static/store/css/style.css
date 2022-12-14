@@ -600,7 +600,7 @@ textarea.input {
 
 .cart-dropdown .cart-btns>a {
   display: inline-block;
-  width: calc(50% - 0px);
+  width: calc(100% - 0px);
   padding: 12px;
   background-color: #D10024;
   color: #FFF;
@@ -1060,6 +1060,21 @@ textarea.input {
   transition: 0.2s all;
 }
 
+.product .add-to-cart .in-cart-btn {
+  position: relative;
+  border: 2px solid transparent;
+  height: 40px;
+  padding: 0 30px;
+  background-color: #FFF;
+  color: #D10024;
+  border-color: #D10024;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 40px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
  .apply-btn {
   position: relative;
   border: 2px solid transparent;
@@ -1182,7 +1197,18 @@ textarea.input {
   border: none;
   color: #FFF;
 }
-
+.delete_from_cart {
+  top: 0;
+  left: 0;
+  height: 14px;
+  width: 14px;
+  text-align: center;
+  font-size: 10px;
+  padding: 0;
+  background: #1e1f29;
+  border: none;
+  color: #FFF;
+}
 /*----------------------------*\
 	Products slick
 \*----------------------------*/
@@ -1191,6 +1217,10 @@ textarea.input {
   padding-bottom: 60px;
   margin-bottom: -60px;
   z-index: 2;
+}
+.content {
+    box-sizing: border-box;
+    padding: 20px;
 }
 
 .products-slick .product.slick-slide {
@@ -1575,6 +1605,21 @@ textarea.input {
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
+.product-details .add-to-cart .in-cart-btn {
+  position: relative;
+  border: 2px solid transparent;
+  height: 40px;
+  padding: 0 30px;
+  background-color: #FFF;
+  color: #D10024;
+  border-color: #D10024;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 40px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
 
 .product-details .add-to-cart .add-to-cart-btn>i {
   position: absolute;
@@ -1922,7 +1967,10 @@ textarea.input {
 }
 
 .order-summary .order-col>div:first-child {
-  width: calc(100% - 150px);
+  width: 50px;
+}
+.order-summary .order-col .second {
+  width: 450px;
 }
 
 .order-summary .order-col>div:last-child {
