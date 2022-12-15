@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'spurl',
     'store.apps.StoreConfig',
     'cart.apps.CartConfig',
+    'order.apps.OrderConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,76 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- Order Details -->
+					<div class="col-md-8 order-details">
+						<div class="section-title text-center">
+							<h3 class="title">Your Cart</h3>
+						</div>
+						<div class="order-summary">
+							<div class="order-col">
+								<div></div>
+								<div><strong>PRODUCT</strong></div>
+								<div><strong>TOTAL</strong></div>
+							</div>
+							<div class="order-products">
+								{% for elem in cart.cart_elem %}
+								<div class="order-col">
+									<div>
+										<form method="post" action="{% url 'cart_remove' elem.product.id %}">
+										{% csrf_token %}
+										<input type="hidden" name = "redirect_url" value="{{request.get_full_path}}">
+										<button class="delete_from_cart"><i class="fa fa-close"></i></button>
+										</form>
+									</div>
+									<div class="product-img-in-cart">
+													<img src="{{elem.product.photo.url}}" alt="">
+									</div>
+									<div class="second"><b>{{elem.quantity}} x</b> <a href="{{elem.product.get_absolute_url}}"><b>{{elem.product.name}}</b></a></div>
+									<form method="post" action="{% url 'cart_add' elem.product.id %}">
+									{% csrf_token %}
+									<input type="hidden" name = "redirect_url" value="{{request.get_full_path}}">
+									<div class="input-number">
+										<input name = "quantity" type="number" value="{{elem.quantity}}" onchange="this.form.submit()">
+										<span class="qty-up">+</span>
+										<span class="qty-down">-</span>
+									</div>
+									</form>
+									<div>${% widthratio elem.product.final_price 1 elem.quantity %}</div>
+								</div>
+								{% endfor %}
+							</div>
+							<br>
+							<div class="order-col">
+								<div></div>
+								<div></div>
+								<div>Shiping</div>
+								<div><strong>FREE</strong></div>
+							</div>
+							<div class="order-col">
+								<div></div>
+								<div></div>
+								<div><strong>TOTAL</strong></div>
+								<div><strong class="order-total">${{cart.get_total_price}}</strong></div>
+							</div>
+						</div>
+						{% if request.user.is_authenticated %}
+							<a href="{% url 'create_order' %}" class="primary-btn order-submit">Place order</a>
+						{% else %}
+							<br>
+							<p style="text-indent:50px; font-size: 15px">To place order ypu should <a href="{% url 'login' %}"><b>Log in</b></a> or  <a href="{% url 'register' %}"><b>Create account</b></a></p>
+						{% endif %}
+					</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+{% endblock %}

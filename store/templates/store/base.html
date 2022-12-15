@@ -50,6 +50,7 @@
 					</ul>
 					<ul class="header-links pull-right">
 					{% if request.user.is_authenticated %}
+						<li><a href="{% url 'created_order' %}">My orders</a></li>
 						<li><a>Hello, {{request.user.username}}</a></li>
 						<li><a href="{% url 'logout' %}"><i class="fa fa-user-o"></i>Log out</a></li>
 					{% else %}

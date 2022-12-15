@@ -1,0 +1,72 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-7">
+						<!-- Billing Details -->
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">You place an order as {{request.user}}</h3>
+							</div>
+							<form method="post" action="{% url 'create_order' %}">
+							<div class="form-error">{{form.non_field_errors}}</div>
+							{% csrf_token %}
+							{% for field in form %}
+								<div class="form-group">
+									{{field}}
+									<div class="form-error">{{field.errors}}</div>
+								</div>
+							{% endfor %}
+							<button class="apply-btn">place order</button>
+							</form>
+						</div>
+					</div>
+					<!-- /Billing Details -->
+					<!-- Order Details -->
+					<div class="col-md-5 order-details">
+						<div class="section-title text-center">
+							<h3 class="title">Your ORDER</h3>
+						</div>
+						<div class="order-summary">
+							<div class="order-col">
+								<div></div>
+								<div></div>
+								<div>Shiping</div>
+								<div><strong>FREE</strong></div>
+							</div>
+							<div class="order-col">
+								<div></div>
+								<div></div>
+								<div><strong>TOTAL</strong></div>
+								<div><strong class="order-total">${{cart.get_total_price}}</strong></div>
+							</div>
+							<div class="order-col">
+								<br>
+							</div>
+							<div class="order-products">
+								{% for elem in cart.cart_elem %}
+								<div class="order-col">
+									<div class="product-img-in-cart">
+													<img src="{{elem.product.photo.url}}" alt="">
+									</div>
+									<div class="second"><b>{{elem.quantity}} x</b> <a href="{{elem.product.get_absolute_url}}"><b>{{elem.product.name}}</b></a></div>
+									<div>${% widthratio elem.product.final_price 1 elem.quantity %}</div>
+								</div>
+								{% endfor %}
+							</div>
+							<br>
+						</div>
+					</div>
+					<!-- /Order Details -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+{% endblock %}

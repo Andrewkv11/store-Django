@@ -22,3 +22,7 @@ def cart_remove(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart.remove_elem(product)
     return redirect(request.POST['redirect_url'])
+
+
+def view_cart(request):
+    return render(request, 'cart/view_cart.html')

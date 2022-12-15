@@ -1,0 +1,58 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+					<!-- Order Details -->
+					<div class="col-md-17 order-details">
+						<div class="section-title text-center">
+							<h3 class="title">Your orders</h3>
+						</div>
+						<div class="order-summary">
+							<div class="order-col">
+								<div style="width: 50px;"><strong>ORDER</strong></div>
+								<div style="width: 160px;"><strong style="padding: 50px;">DATE</strong></div>
+								<div style="width: 230px;"><strong style="padding: 10px;">DELIVERY ADDRESS</strong></div>
+								<div style="width: 400px;"><strong style="padding: 90px;">PRODUCTS</strong></div>
+								<div style="width: 80px;" ><strong>STATUS</strong></div>
+								<div style="width: 150px;"><strong>TOTAL PRICE</strong></div>
+							</div>
+							<div class="order-col">
+								<br>
+							</div>
+							<div class="order-products">
+								{% for order in orders %}
+								<div class="order-col">
+									<div style="width: 50px;"><strong>Order №{{order.id}}</strong></div>
+									<div style="width: 160px;"><p style="padding: 30px;">{{order.created}}</p></div>
+									<div style="width: 230px;"><p style="padding: 10px;">{{order.city}}, {{order.address}}</p></div>
+									<div style="width: 400px;">
+										{% for orderitem in order.orderitem_set.all %}
+										<li><a href="{{orderitem.product.get_absolute_url}}">{{orderitem.product}}</a></li>
+										{% endfor %}
+									</div>
+									{% if order.paid == 0 %}
+									<div style="width: 80px;"><p style="padding: 0px;">Awaiting payment</p></div>
+									{% else %}
+									<div style="width: 80px;"><p style="padding: 0px;">in delivery</p></div>
+									{% endif %}
+									<div style="width: 150px;"><p style="padding: 10px;">$ {{order.get_total_cost}}</p></div>
+								</div>
+								<br>
+								<hr>
+								{% endfor %}
+							</div>
+							<br>
+						</div>
+					</div>
+					<!-- /Order Details -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+{% endblock %}

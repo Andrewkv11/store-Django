@@ -142,7 +142,7 @@ textarea.input {
 .input-number input[type="number"] {
   -moz-appearance: textfield;
   height: 40px;
-  width: 100%;
+  width: 80px;
   border: 1px solid #E4E7ED;
   background-color: #FFF;
   padding: 0px 35px 0px 15px;
@@ -1144,6 +1144,11 @@ textarea.input {
   width: 100%;
 }
 
+.product-img-in-cart>img {
+  width: 120px;
+  height: 90px;
+}
+
 .product-widget .product-body {
   padding-left: 75px;
   min-height: 60px;
@@ -1970,11 +1975,11 @@ textarea.input {
   width: 50px;
 }
 .order-summary .order-col .second {
-  width: 450px;
+  width: 400px;
 }
 
 .order-summary .order-col>div:last-child {
-  width: 150px;
+  width: 100px;
   text-align: right;
 }
 

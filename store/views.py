@@ -81,10 +81,6 @@ class LoginUser(LoginView):
         return reverse_lazy('login')
 
 
-def view_cart(request):
-    return render(request, 'store/view_cart.html')
-
-
 def logout_user(request):
     logout(request)
     return redirect('login')
