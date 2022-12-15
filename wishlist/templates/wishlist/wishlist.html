@@ -1,0 +1,93 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% load store_tags %}
+{% block content %}
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- ASIDE -->
+            <div id="aside" class="col-md-2">
+            </div>
+            <!-- /ASIDE -->
+            <!-- STORE -->
+            <div id="store" class="col-md-9">
+                <div class="section-title">
+                <h3 class="title">you have added  {{wishlist.wishlist_len}}  products to your favorites </h3>
+                </div>
+                <div class="row">
+                    <!-- product -->
+                    {% for product in wishlist.wishlist_elem %}
+                    <div class="col-md-4 col-xs-6">
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="{{product.photo.url}}" alt="">
+                                <div class="product-label">
+                                    {% if product.discount != 0 %}
+                                    <span class="sale">{{product.discount}}%</span>
+                                    {% endif %}
+                                    <span class="new">NEW</span>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">{{product.cat}}</p>
+                                <div style="height: 50px;">
+                                    <h3 class="product-name"><a href="{{product.get_absolute_url}}">{{product.name}}</a>
+                                    </h3>
+                                </div>
+                                {% if product.discount == 0 %}
+                                <h4 class="product-price">${{product.price}}</h4>
+                                {% else %}
+                                    <h4 class="product-price">${{product.final_price}}
+                                    <del class="product-old-price">${{product.price}}</del>
+                                    </h4>
+                                {% endif %}
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <form method="post" action="{% url 'change_wishlist' product.id %}">
+                                {% csrf_token %}
+                                <div class="product-btns">
+                                    <input type="hidden" name = "redirect_url" value="{{request.get_full_path}}">
+                                    {% if product.id|str in wishlist.wishlist %}
+                                    <button class="add-to-wishlist"><i class="fa fa-heart"></i><span class="tooltipp">remove from wishlist</span></button>
+                                    {% else %}
+                                    <button class="remove-from-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                    {% endif %}
+                                </div>
+                                </form>
+                            </div>
+                            <form method="post" action="{% url 'cart_add' product.id %}">
+                                {% csrf_token %}
+                            <div class="add-to-cart">
+                                <input type="hidden" name = "redirect_url" value="{{request.get_full_path}}">
+                                {% if product.id|str in cart.cart %}
+                                        <button class="in-cart-btn" disabled>in cart</button>
+                                {% else %}
+                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                {% endif %}
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                    <div class="clearfix visible-sm visible-xs"></div>
+                    {% endfor %}
+                    <!-- /product -->
+                </div>
+                <!-- /store products -->
+            </div>
+            <!-- /STORE -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+{% endblock %}

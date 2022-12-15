@@ -74,14 +74,6 @@
 							<form method="post" action="{% url 'cart_add' product.id %}">
 								{% csrf_token %}
 							<div class="add-to-cart">
-								<div class="qty-label">
-									Qty
-									<div class="input-number">
-										<input type="number">
-										<span class="qty-up">+</span>
-										<span class="qty-down">-</span>
-									</div>
-								</div>
 								<input type="hidden" name = "redirect_url" value="{{request.get_full_path}}">
 								{% if product.id|str in cart.cart %}
                                         <button class="in-cart-btn" disabled>in cart</button>
@@ -90,11 +82,17 @@
                                 {% endif %}
 							</div>
 							</form>
-
-							<ul class="product-btns">
-								<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
-							</ul>
-
+							<form method="post" action="{% url 'change_wishlist' product.id %}">
+                                {% csrf_token %}
+								<input type="hidden" name = "redirect_url" value="{{request.get_full_path}}">
+								<ul class="product-btns">
+									{% if product.id|str in wishlist.wishlist %}
+										<li><i class="fa fa-heart-o"></i>   remove from wishlist</li>
+									{% else %}
+										<li><i class="fa fa-heart-o"></i>   add to wishlist</li>
+									{% endif %}
+								</ul>
+							</form>
 							<ul class="product-links">
 								<li>Category:</li>
 								<li><a href="{{product.cat.get_absolute_url}}">{{product.cat}}</a></li>

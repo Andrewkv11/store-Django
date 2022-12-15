@@ -44,9 +44,9 @@
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+						<li><a><i class="fa fa-phone"></i> +021-95-51-84</a></li>
+						<li><a><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+						<li><a><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 					</ul>
 					<ul class="header-links pull-right">
 					{% if request.user.is_authenticated %}
@@ -99,10 +99,10 @@
 							<div class="header-ctn">
 								<!-- Wishlist -->
 								<div>
-									<a href="#">
+									<a href="{% url 'view_wishlist' %}">
 										<i class="fa fa-heart-o"></i>
 										<span>Your Wishlist</span>
-										<div class="qty">2</div>
+										<div class="qty">{{wishlist.wishlist_len}}</div>
 									</a>
 								</div>
 								<!-- /Wishlist -->
@@ -276,9 +276,9 @@
 								<h3 class="footer-title">About Us</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+									<li><a><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
+									<li><a><i class="fa fa-phone"></i>+021-95-51-84</a></li>
+									<li><a><i class="fa fa-envelope-o"></i>email@email.com</a></li>
 								</ul>
 							</div>
 						</div>
@@ -301,11 +301,11 @@
 							<div class="footer">
 								<h3 class="footer-title">Information</h3>
 								<ul class="footer-links">
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Contact Us</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Orders and Returns</a></li>
-									<li><a href="#">Terms & Conditions</a></li>
+									<li><a href="{% url 'blank' %}">About Us</a></li>
+									<li><a href="{% url 'blank' %}">Contact Us</a></li>
+									<li><a href="{% url 'blank' %}">Privacy Policy</a></li>
+									<li><a href="{% url 'blank' %}">Orders and Returns</a></li>
+									<li><a href="{% url 'blank' %}">Terms & Conditions</a></li>
 								</ul>
 							</div>
 						</div>
@@ -314,11 +314,10 @@
 							<div class="footer">
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
-									<li><a href="#">View Cart</a></li>
-									<li><a href="#">Wishlist</a></li>
-									<li><a href="#">Track My Order</a></li>
-									<li><a href="#">Help</a></li>
+									<li><a href="{% url 'view_cart' %}">View Cart</a></li>
+									<li><a href="{% url 'view_wishlist' %}">Wishlist</a></li>
+									<li><a href="{% url 'created_order' %}">Track My Order</a></li>
+									<li><a href="{% url 'blank' %}">Help</a></li>
 								</ul>
 							</div>
 						</div>

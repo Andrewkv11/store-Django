@@ -1,5 +1,6 @@
 from django.conf import settings
 from store.models import Product
+from copy import deepcopy
 
 
 class Cart:
@@ -33,10 +34,10 @@ class Cart:
     def cart_elem(self):
         product_ids = self.cart.keys()
         products = Product.objects.filter(id__in=product_ids)
-        cart = self.cart.copy()
+        cart_copy = deepcopy(self.cart)
         for product in products:
-            cart[str(product.id)]['product'] = product
-        for item in self.cart.values():
+            cart_copy[str(product.id)]['product'] = product
+        for item in cart_copy.values():
             item['price'] = int(item['price'])
             item['total_price'] = item['price'] * item['quantity']
             yield item

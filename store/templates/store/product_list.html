@@ -1,8 +1,8 @@
 {% extends 'store/base.html' %}
 {% load static %}
 {% load store_tags %}
-{% block content %}
 {% load spurl %}
+{% block content %}
 <!-- SECTION -->
 <div class="section">
     <!-- container -->
@@ -126,10 +126,17 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
+                                <form method="post" action="{% url 'change_wishlist' product.id %}">
+                                {% csrf_token %}
                                 <div class="product-btns">
-                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
-                                    </button>
+                                    <input type="hidden" name = "redirect_url" value="{{request.get_full_path}}">
+                                    {% if product.id|str in wishlist.wishlist %}
+                                    <button class="add-to-wishlist"><i class="fa fa-heart"></i><span class="tooltipp">remove from wishlist</span></button>
+                                    {% else %}
+                                    <button class="remove-from-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                    {% endif %}
                                 </div>
+                                </form>
                             </div>
                             <form method="post" action="{% url 'cart_add' product.id %}">
                                 {% csrf_token %}
