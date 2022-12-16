@@ -24,13 +24,13 @@
                         <div class="price-filter">
                             <div id="price-slider"></div>
                             <div class="input-number price-min">
-                                <input id="price-min" type="number" name="min_price">
+                                <input id="price-min" type="number" name="min_price" {% if request.GET.min_price %} value={{request.GET.min_price}} {% else %} value=200 {% endif %}>
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
                             <span>-</span>
                             <div class="input-number price-max">
-                                <input id="price-max" type="number" name="max_price">
+                                <input id="price-max" type="number" name="max_price" {% if request.GET.min_price %} value={{request.GET.max_price}} {% else %} value=10000 {% endif %}>
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
@@ -102,6 +102,8 @@
                 </form>
                 <!-- /store top filter -->
             {% endif %}
+
+                {% if products|length > 0 %}
                 <!-- store products -->
                 <div class="row">
                     <!-- product -->
@@ -167,6 +169,11 @@
                     {% endfor %}
                     <!-- /product -->
                 </div>
+                {% else %}
+                <div class="section-title">
+                    <h3 class="title">   No results</h3>
+                </div>
+                {% endif %}
                 <!-- /store products -->
 
                 <!-- store bottom filter -->

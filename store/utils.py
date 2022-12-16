@@ -9,6 +9,7 @@ class DataMixin:
         # context['extreme_prices'] = Product.objects.aggregate(Max('price'), Min('price'))
         context['brand_filter'] = self.request.GET.getlist('brand')
         context['sorted_by'] = self.request.GET.get('sort_by')
+        context['ll'] = 'дьяч пидор'
         if self.request.GET.get('search'):
             context['search_form'] = SearchForm(self.request.GET)
         else:

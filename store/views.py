@@ -19,7 +19,7 @@ class MainPage(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cat_selected'] = None
+        context['cat_selected'] = -1
         context['new_products'] = Product.objects.order_by('-pk')[:15]
         context['discount_products'] = Product.objects.filter(discount__gt=0).order_by('-discount')
         return context

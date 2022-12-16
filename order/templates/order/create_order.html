@@ -21,7 +21,9 @@
 									<div class="form-error">{{field.errors}}</div>
 								</div>
 							{% endfor %}
+							{% if cart.cart_len > 0%}
 							<button class="apply-btn">place order</button>
+							{% endif %}
 							</form>
 						</div>
 					</div>
