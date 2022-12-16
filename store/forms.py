@@ -24,3 +24,7 @@ class RegisterUserForm(UserCreationForm):
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'Username'}))
     password = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'Password'}))
+
+
+class SearchForm(forms.Form):
+    search = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'Search name in category'}))
