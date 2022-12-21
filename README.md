@@ -1,6 +1,8 @@
 # Store
 [Link to the project on the server](http://andko4nm.beget.tech)
 
+![image](https://user-images.githubusercontent.com/119928829/208875656-c71f973f-627b-4dc6-bfcb-1553ae4e62b8.png)
+
 The project developed for an gadjets online store by the type of dropshipping. The functionality is constantly expanding and now includes:
 * Product pages and their categories
 * Sorting, filtering and pagination of the products list
