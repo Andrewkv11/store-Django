@@ -22,5 +22,4 @@ The project developed for an gadjets online store by the type of dropshipping. T
 * Nginx
 * Git
 * Docker
-* DockerHub
 * JS
