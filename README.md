@@ -18,7 +18,7 @@ The project developed for an gadjets online store by the type of dropshipping. T
 * Django 4.1.4
 * Rest API
 * PostgreSQL
-* MySQL
+* MySQL (server)
 * Nginx
 * Git
 * Docker
